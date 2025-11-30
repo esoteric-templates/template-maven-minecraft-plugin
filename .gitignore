@@ -1,4 +1,5 @@
 # Maven build
+dependency-reduced-pom.xml
 target/
 
 # Nix build result
