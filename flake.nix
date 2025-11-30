@@ -29,7 +29,7 @@
 
           src = ./.;
 
-          mvnHash = "sha256-JB2T5ODJRq9xZOJPdFCap/n7swKotgGdJVfw/KPKBTQ=";
+          mvnHash = "sha256-HkjQwqKV6k4RyMUAP+FB/8KVEZH18CmM1aoyenbdyBw=";
 
           nativeBuildInputs = with pkgs; [
             makeWrapper
