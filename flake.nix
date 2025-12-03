@@ -29,18 +29,15 @@
 
           src = ./.;
 
-          mvnHash = "sha256-HkjQwqKV6k4RyMUAP+FB/8KVEZH18CmM1aoyenbdyBw=";
+          mvnHash = "sha256-dmq410+WxyW3XX0+LHVRZgpWPt1hpirryghre5pK7rw=";
 
           nativeBuildInputs = with pkgs; [
             makeWrapper
           ];
 
           installPhase = ''
-            mkdir -p $out/bin $out/share/${name}
+            mkdir -p $out/share/${name}
             install -Dm644 target/${name}-1.0-SNAPSHOT.jar $out/share/${name}
-
-            makeWrapper ${pkgs.jre}/bin/java $out/bin/${name} \
-              --add-flags "-jar $out/share/${name}/${name}-1.0-SNAPSHOT.jar"
           '';
 
           meta = {
