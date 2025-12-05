@@ -33,14 +33,23 @@
 
           nativeBuildInputs = with pkgs; [
             makeWrapper
+
+            xmlstarlet
           ];
+
+          preBuild = ''
+            xmlstarlet ed --inplace \
+              -N pom="http://maven.apache.org/POM/4.0.0" \
+              -u '/pom:project/pom:version' -v '${revision}' \
+              pom.xml
+          '';
 
           installPhase = ''
             mkdir -p $out/bin $out/share/${name}
-            install -Dm644 target/${name}-1.0-SNAPSHOT.jar $out/share/${name}
+            install -Dm644 target/${name}-${revision}.jar $out/share/${name}
 
             makeWrapper ${pkgs.jre}/bin/java $out/bin/${name} \
-              --add-flags "-jar $out/share/${name}/${name}-1.0-SNAPSHOT.jar"
+              --add-flags "-jar $out/share/${name}/${name}-${revision}.jar"
           '';
 
           meta = {
