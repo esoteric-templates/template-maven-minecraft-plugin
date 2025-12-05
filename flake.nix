@@ -1,5 +1,5 @@
 {
-  description = "A template Kotlin project with Maven";
+  description = "A template Kotlin Minecraft plugin project with Maven";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -41,8 +41,8 @@
           '';
 
           meta = {
-            description = "A template Kotlin project with Maven";
-            homepage = "https://gitlab.com/esoteric-templates/templates/template-maven-kotlin-project";
+            description = "A template Kotlin Minecraft plugin project with Maven";
+            homepage = "https://gitlab.com/esoteric-templates/templates/template-maven-minecraft-plugin";
           };
         });
       });
