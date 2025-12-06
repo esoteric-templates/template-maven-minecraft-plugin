@@ -11,7 +11,8 @@
     <name>Template</name>
 
     <properties>
-        <project.mainClass>${project.groupId}.${project.artifactId}.${project.name}Kt</project.mainClass>
+        <project.package>${project.groupId}.${project.artifactId}</project.package>
+        <project.mainClass>${project.package}.${project.name}Kt</project.mainClass>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.outputTimestamp>2025-01-01T00:00:00Z</project.build.outputTimestamp>
@@ -64,15 +65,15 @@
                     <relocations>
                         <relocation>
                             <pattern>kotlin</pattern>
-                            <shadedPattern>${project.groupId}.shaded.kotlin</shadedPattern>
+                            <shadedPattern>${project.package}.shaded.kotlin</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>org.intellij</pattern>
-                            <shadedPattern>${project.groupId}.shaded.org.intellij</shadedPattern>
+                            <shadedPattern>${project.package}.shaded.org.intellij</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>org.jetbrains</pattern>
-                            <shadedPattern>${project.groupId}.shaded.org.jetbrains</shadedPattern>
+                            <shadedPattern>${project.package}.shaded.org.jetbrains</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
