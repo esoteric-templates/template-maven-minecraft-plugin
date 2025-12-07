@@ -1,7 +1,7 @@
 name: ${project.name}
 version: ${project.version}
 main: ${project.mainClass}
-description: An example plugin
+description: ${project.about}
 author: Esoteric Enderman
 website: ${project.url}
 api-version: '1.20'

@@ -21,6 +21,7 @@
         packages.default = (
           let
             name = "plugin";
+            about = "A template Kotlin Minecraft plugin project with Maven";
             url = "https://gitlab.com/esoteric-templates/templates/template-maven-minecraft-plugin";
 
             revision = self.shortRev or self.dirtyRev or "unknown";
@@ -50,6 +51,12 @@
               -s "/pom:project/pom:properties" \
               -t elem -n "project.url" -v "${url}" \
               pom.xml
+
+            xmlstarlet ed --inplace \
+              -N pom="http://maven.apache.org/POM/4.0.0" \
+              -s "/pom:project/pom:properties" \
+              -t elem -n "project.about" -v "${about}" \
+              pom.xml
           '';
 
           installPhase = ''
@@ -58,7 +65,7 @@
           '';
 
           meta = {
-            description = "A template Kotlin Minecraft plugin project with Maven";
+            description = about;
             homepage = url;
           };
         });
