@@ -1,7 +1,7 @@
-name: Template
-version: 1.0.0
-main: org.example.Plugin
+name: ${project.name}
+version: ${project.version}
+main: ${project.mainClass}
 description: An example plugin
 author: Esoteric Enderman
-website: https://gitlab.com/esoteric-templates/templates/template-maven-minecraft-plugin
+website: ${project.url}
 api-version: '1.20'

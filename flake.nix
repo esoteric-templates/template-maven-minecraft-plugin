@@ -20,7 +20,9 @@
 
         packages.default = (
           let
-            name = "template";
+            name = "plugin";
+            url = "https://gitlab.com/esoteric-templates/templates/template-maven-minecraft-plugin";
+
             revision = self.shortRev or self.dirtyRev or "unknown";
           in
         pkgs.maven.buildMavenPackage {
@@ -29,20 +31,35 @@
 
           src = ./.;
 
-          mvnHash = "sha256-dmq410+WxyW3XX0+LHVRZgpWPt1hpirryghre5pK7rw=";
+          mvnHash = "sha256-e9sPCEA3xCCvaWD2s+EERXEU4LLnhQymsx1G+l4A0SQ=";
 
           nativeBuildInputs = with pkgs; [
             makeWrapper
+
+            xmlstarlet
           ];
+
+          preBuild = ''
+            xmlstarlet ed --inplace \
+              -N pom="http://maven.apache.org/POM/4.0.0" \
+              -u '/pom:project/pom:version' -v '${revision}' \
+              pom.xml
+
+            xmlstarlet ed --inplace \
+              -N pom="http://maven.apache.org/POM/4.0.0" \
+              -s "/pom:project/pom:properties" \
+              -t elem -n "project.url" -v "${url}" \
+              pom.xml
+          '';
 
           installPhase = ''
             mkdir -p $out/share/${name}
-            install -Dm644 target/${name}-1.0-SNAPSHOT.jar $out/share/${name}
+            install -Dm644 target/${name}-${revision}.jar $out/share/${name}
           '';
 
           meta = {
             description = "A template Kotlin Minecraft plugin project with Maven";
-            homepage = "https://gitlab.com/esoteric-templates/templates/template-maven-minecraft-plugin";
+            homepage = url;
           };
         });
       });

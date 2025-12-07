@@ -1,4 +1,4 @@
-package org.example
+package org.example.plugin
 
 import org.bukkit.plugin.java.JavaPlugin
 

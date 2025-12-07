@@ -4,13 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>template</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>plugin</artifactId>
+    <version>dev</version>
     <packaging>jar</packaging>
 
-    <name>org.example template</name>
+    <name>Plugin</name>
 
     <properties>
+        <project.package>${project.groupId}.${project.artifactId}</project.package>
+        <project.mainClass>${project.package}.${project.name}</project.mainClass>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.outputTimestamp>2025-01-01T00:00:00Z</project.build.outputTimestamp>
         <kotlin.version>2.1.20</kotlin.version>
@@ -38,18 +41,6 @@
             <artifactId>kotlin-stdlib</artifactId>
             <version>${kotlin.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test-junit</artifactId>
-            <version>${kotlin.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -58,9 +49,8 @@
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
             </resource>
-
-
 
             <resource>
                 <directory>${basedir}</directory>
@@ -81,15 +71,15 @@
                     <relocations>
                         <relocation>
                             <pattern>kotlin</pattern>
-                            <shadedPattern>org.example.shaded.kotlin</shadedPattern>
+                            <shadedPattern>${project.package}.shaded.kotlin</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>org.intellij</pattern>
-                            <shadedPattern>org.example.shaded.org.intellij</shadedPattern>
+                            <shadedPattern>${project.package}.shaded.org.intellij</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>org.jetbrains</pattern>
-                            <shadedPattern>org.example.shaded.org.jetbrains</shadedPattern>
+                            <shadedPattern>${project.package}.shaded.org.jetbrains</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
