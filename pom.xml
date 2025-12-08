@@ -55,6 +55,13 @@
             <resource>
                 <directory>${basedir}</directory>
                 <includes>
+                    <include>README.md</include>
+                </includes>
+            </resource>
+
+            <resource>
+                <directory>${basedir}</directory>
+                <includes>
                     <include>LICENSE</include>
                 </includes>
                 <targetPath>META-INF</targetPath>
